@@ -1,8 +1,8 @@
-import { View, Text, Animated, ColorSchemeName } from 'react-native'
+import { Animated, ColorSchemeName } from 'react-native'
 import React, { useEffect, useRef } from 'react'
 import { Dot, LoadingContainer } from './styles';
 
-export default function DotsLoading({colorTheme}: {colorTheme: ColorSchemeName}) {
+export default function DotsLoadingComponent({colorTheme}: {colorTheme: ColorSchemeName}) {
     const opacity = useRef(new Animated.Value(0)).current;
 
     const animate = () => {

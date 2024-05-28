@@ -1,7 +1,7 @@
 import React from 'react'
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { LoadingImage, MainView } from './styles';
-import DotsLoading from '@/components/DotsLoading';
+import DotsLoading from '@/components/application/DotsLoadingComponent';
 
 export default function LoadingPage() {
   const colorScheme = useColorScheme();
