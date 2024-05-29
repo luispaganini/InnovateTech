@@ -32,5 +32,8 @@
     "experiments": {
       "typedRoutes": true
     }
+  },
+  "uris": {
+    "api": "https://randomuser.me/api/"
   }
 }
