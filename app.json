@@ -35,5 +35,9 @@
   },
   "uris": {
     "api": "https://randomuser.me/api/"
+  },
+  "infoApplication": {
+    "sizeList": 20,
+    "nationality": "br"
   }
 }

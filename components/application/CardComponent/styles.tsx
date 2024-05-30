@@ -16,6 +16,7 @@ export const Card = styled(ThemedView)<{ colorTheme: ColorSchemeName}>`
     flex-direction: row;
     align-items: center;
     overflow: hidden;
+    margin-bottom: 10px;
 `;
 
 export const CardTextContent = styled(ThemedView)`

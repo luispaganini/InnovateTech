@@ -27,8 +27,6 @@ i18n
     react: {
       useSuspense: false, // Disable suspense to prevent issues with React Native
     },
-  })
-  .then(() => console.log('i18n initialized successfully'))
-  .catch((error) => console.error('i18n initialization failed', error));
+  });
 
 export default i18n;

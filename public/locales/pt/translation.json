@@ -1,5 +1,9 @@
 {
     "male": "Masculino",
-    "female": "Feminino"
+    "female": "Feminino",
+    "Mr": "Sr.",
+    "Ms": "Sra.",
+    "Mrs": "Sra.",
+    "Miss": "Srta."
   }
   

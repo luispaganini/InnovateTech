@@ -1,5 +1,5 @@
 import { useWindowDimensions } from 'react-native'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Avatar } from 'react-native-paper';
 import { Card, CardTextContent, InfoCardText } from './styles';
@@ -12,7 +12,6 @@ interface CardComponentProps {
     user: IUserInterface
 }
 
-
 export default function CardComponent(props: CardComponentProps) {
     const colorScheme = useColorScheme();
 
@@ -22,12 +21,12 @@ export default function CardComponent(props: CardComponentProps) {
     
     return (
         <Card colorTheme={colorScheme}>
-            <Avatar.Image size={avatarSize} source={{ uri: 'https://randomuser.me/api/portraits/men/12.jpg' }} />
+            <Avatar.Image size={avatarSize} source={{ uri: props.user.picture.large }} />
             <CardTextContent>
-                <ThemedText type="defaultSemiBold">{props.user.name + ' ' + props.user.lastName}</ThemedText>
+                <ThemedText type="defaultSemiBold">{t(props.user.name.title) + ' ' + props.user.name.first + ' ' + props.user.name.last}</ThemedText>
                 <InfoCardText>
-                    <ThemedText type="default">{t(props.user.sex)}</ThemedText>
-                    <ThemedText type="default">{props.user.dateOfBirth.toLocaleDateString('pt-BR')}</ThemedText>
+                    <ThemedText type="default">{t(props.user.gender)}</ThemedText>
+                    <ThemedText type="default">{new Date(props.user.dob.date).toLocaleDateString('pt-BR')}</ThemedText>
                 </InfoCardText>
             </CardTextContent>
         </Card>

@@ -12,7 +12,6 @@ import { I18nextProvider } from 'react-i18next';
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  console.log(i18n.exists('common:male'));
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
