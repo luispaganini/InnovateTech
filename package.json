@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^6.0.2",
     "@types/axios": "^0.14.0",
     "axios": "^1.7.2",
@@ -42,7 +43,8 @@
     "react-native-vector-icons": "^10.1.0",
     "react-native-web": "~0.19.10",
     "styled-components": "^6.1.11",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "expo-blur": "~13.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

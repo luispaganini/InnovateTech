@@ -1,7 +1,5 @@
 import React from 'react'
-import { ThemedView } from '@/components/ThemedView'
 import SearchBarComponent from '../SearchBarComponent'
-import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Colors } from '@/constants/Colors';
 import { MaterialIcons } from '@expo/vector-icons';

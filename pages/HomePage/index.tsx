@@ -1,14 +1,16 @@
-import { ActivityIndicator, Button, FlatList, SafeAreaView, StatusBar, Text, View } from 'react-native'
+import { FlatList, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { ThemedView } from '@/components/ThemedView'
-import CardComponent from '@/components/application/CardComponent'
-import LoadingMoreComponent from '@/components/application/LoadingMoreComponent'
-import SearchAndFilterComponent from '@/components/application/SearchAndFilterComponent'
-import { ContentHome, TitleText } from './styles'
+import LoadingMoreComponent from '@/components/application/components/LoadingMoreComponent'
+import SearchAndFilterComponent from '@/components/application/components/SearchAndFilterComponent'
+import { ContentHome, HomeMainContainer, SafeAreaViewHome, TitleText } from './styles'
 import IUserInterface from '@/interfaces/IUserInterface'
 import appConfig from '@/app.json'
 import { getUserInfoByPage } from '@/services/randomUsers/userInfo'
 import { useUsersListStore, userListInfoStore } from '@/store/Users'
+import NoDataComponent from '@/components/application/components/NoDataComponent'
+import CardComponent from '@/components/application/components/CardComponent'
+import UserDetailsModal from '@/components/application/modals/UserDetailsModal'
+import LoadingModal from '@/components/application/modals/LoadingModal'
 
 export default function HomePage() {
     const firstUsers = useUsersListStore();
@@ -16,15 +18,14 @@ export default function HomePage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [users, setUsers] = useState<IUserInterface[]>(firstUsers.firstUsers);
     const [seed, setSeed] = useState(firstUsers.userSeed);
+    const [selectedUser, setSelectedUser] = useState<IUserInterface | null>(null);
 
     useEffect(() => {
-        if (users.length === 0)
+        if (users.length === 0) 
             loadData();
+        else 
+            listInfo.setLoading(false);
     }, [])
-
-    useEffect(() => {
-        console.log(users.length)
-    }, [users])
 
     const loadData = async () => {
         listInfo.setLoading(true);
@@ -32,12 +33,10 @@ export default function HomePage() {
             if (firstUsers.firstUsers.length > 0) {
                 setUsers(firstUsers.firstUsers);
                 setSeed(firstUsers.userSeed);
-                listInfo.setPage(2);
                 return;
             }
-            
             const userList = await getUserInfoByPage({
-                page: listInfo.page,
+                page: 1,
                 nationality: appConfig.infoApplication.nationality,
                 results: appConfig.infoApplication.sizeList,
                 seed
@@ -45,16 +44,17 @@ export default function HomePage() {
             firstUsers.setFirstUsers(userList.results);
             setUsers(userList.results);
             listInfo.setHasMore(userList.results.length == appConfig.infoApplication.sizeList)
-            listInfo.setPage(2);
             firstUsers.setUserSeed(userList.info.seed);
         } catch (error) {
             console.error(error);
         } finally {
+            listInfo.setPage(2);
             listInfo.setLoading(false);
         }
     }
 
     const loadMoreData = async () => {
+        listInfo.setLoading(false)
         if (listInfo.loadingMore || !listInfo.hasMore) return;
 
         listInfo.setLoadingMore(true);
@@ -69,7 +69,7 @@ export default function HomePage() {
             listInfo.setPage(listInfo.page + 1);
             listInfo.setHasMore(userList.results.length === appConfig.infoApplication.sizeList);
         } catch (error) {
-             console.error(error);
+            console.error(error);
         } finally {
             listInfo.setLoadingMore(false);
         }
@@ -81,32 +81,42 @@ export default function HomePage() {
         return <LoadingMoreComponent />
     };
 
-    const renderEmpty = () => (
-        <View>
-            <Text>No Data at the moment</Text>
-            <Button onPress={() => loadData()} title='Refresh' />
-        </View>
-    )
-
     return (
-        <SafeAreaView style={{ paddingTop: StatusBar.currentHeight, paddingBottom: 30, flex: 1 }}>
-            <ThemedView>
-                <TitleText type='title'>InnovateTech</TitleText>
-                <SearchAndFilterComponent setQuery={setSearchQuery} query={searchQuery} onSubmit={() => { }} onClickFilter={() => { }} />
-                <ContentHome>
-                    <FlatList
-                        data={users}
-                        keyExtractor={(item) => item.id.value}
-                        renderItem={({ item }) => <CardComponent user={item} />}
-                        onEndReached={loadMoreData}
-                        onEndReachedThreshold={0.2}
-                        ListFooterComponent={renderFooter}
-                        ListEmptyComponent={renderEmpty}
-                        onRefresh={loadData}
-                        refreshing={listInfo.loading}
+        <SafeAreaViewHome>
+            {(listInfo.loading) ? <LoadingModal visible={true} /> : (
+                <View style={{flex: 1}}>
+                    <HomeMainContainer>
+                        <TitleText type='title'>InnovateTech</TitleText>
+                        <SearchAndFilterComponent
+                            setQuery={setSearchQuery}
+                            query={searchQuery}
+                            onSubmit={() => { }}
+                            onClickFilter={() => { }}
+                        />
+                        <ContentHome>
+                            <FlatList
+                                data={users}
+                                keyExtractor={(item) => item.id.value}
+                                renderItem={({ item }) => <CardComponent
+                                    user={item}
+                                    onPress={() => setSelectedUser(item)} />}
+                                onEndReached={loadMoreData}
+                                onEndReachedThreshold={0.2}
+                                ListFooterComponent={renderFooter}
+                                ListEmptyComponent={() => <NoDataComponent onPress={loadData} />}
+                                onRefresh={loadData}
+                                refreshing={listInfo.loading}
+                            />
+                        </ContentHome>
+                    </HomeMainContainer>
+                    <UserDetailsModal
+                        onClose={() => setSelectedUser(null)}
+                        user={selectedUser}
+                        visible={selectedUser != null}
                     />
-                </ContentHome>
-            </ThemedView>
-        </SafeAreaView>
+                </View>
+            )
+            }
+        </SafeAreaViewHome >
     )
 }

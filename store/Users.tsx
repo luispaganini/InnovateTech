@@ -1,4 +1,5 @@
 import IUserInterface from '@/interfaces/IUserInterface';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
@@ -22,9 +23,9 @@ type UsersListState = {
 
 export const userListInfoStore = create<UserListInfoState>((set) => ({
     hasMore: true,
-    loading: false,
+    loading: true,
     loadingMore: false,
-    page: 1,
+    page: 2,
     setHasMore: (hasMore: boolean) => set({ hasMore }),
     setLoading: (loading: boolean) => set({ loading }),
     setLoadingMore: (loadingMore: boolean) => set({ loadingMore }),
@@ -41,7 +42,7 @@ export const useUsersListStore = create<UsersListState>()(
       }),
       {
         name: 'first-users-storage',
-        storage: createJSONStorage(() => sessionStorage),
+        storage: createJSONStorage(() => AsyncStorage),
       }
     )
   );
