@@ -30,6 +30,11 @@ Para execução do aplicativo, é necessário o App "Expo go" em seu aparelho ou
 
 2. Caso esteja com um dispositivo móvel, é necessário ler o QrCode disponibilizado na tela.
 
+## Executar testes
+   ```bash
+    npm run test
+   ```
+
 ## Informações adicionais
 
 Outra maneira de testar é utilizando o QrCode com o app "Expo Go" sem ter a necessidade de rodar o código em sua máquina, por este link: 
