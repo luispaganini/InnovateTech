@@ -10,7 +10,6 @@ import { ThemedView } from '@/components/ThemedView';
 interface SearchBarComponentProps {
     setQuery: (query: string) => void;
     query: string;
-    onSubmit: () => void;
 }
 
 export default function SearchBarComponent(props: SearchBarComponentProps) {
@@ -26,7 +25,7 @@ export default function SearchBarComponent(props: SearchBarComponentProps) {
                     placeholder="Busca..."
                     placeholderTextColor={colorScheme === 'light' ? Colors.light.text : Colors.dark.text}
                 />
-                <TouchableOpacity onPress={props.onSubmit}>
+                <TouchableOpacity>
                     <Ionicons name="search" size={20} color={colorScheme === 'light' ? Colors.light.text : Colors.dark.text} />
                 </TouchableOpacity>
             </SearchBarStructure>

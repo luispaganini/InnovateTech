@@ -1,6 +1,9 @@
 {
+    "All": "Todos",
     "male": "Masculino",
     "female": "Feminino",
+    "Male": "Masculino",
+    "Female": "Feminino",
     "Mr": "Sr.",
     "Ms": "Sra.",
     "Mrs": "Sra.",
@@ -12,6 +15,9 @@
     "Phone": "Telefone",
     "Nationality": "Nacionalidade",
     "Brazil": "Brasil",
-    "Address": "Endereço"
+    "Address": "Endereço",
+    "Apply": "Aplicar",
+    "Cancel": "Cancelar",
+    "Select Gender": "Selecione o Sexo"
   }
   

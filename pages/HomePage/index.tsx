@@ -11,6 +11,7 @@ import NoDataComponent from '@/components/application/components/NoDataComponent
 import CardComponent from '@/components/application/components/CardComponent'
 import UserDetailsModal from '@/components/application/modals/UserDetailsModal'
 import LoadingModal from '@/components/application/modals/LoadingModal'
+import GenderFilterModal from '@/components/application/modals/GenderFilterModal'
 
 export default function HomePage() {
     const firstUsers = useUsersListStore();
@@ -19,13 +20,15 @@ export default function HomePage() {
     const [users, setUsers] = useState<IUserInterface[]>(firstUsers.firstUsers);
     const [seed, setSeed] = useState(firstUsers.userSeed);
     const [selectedUser, setSelectedUser] = useState<IUserInterface | null>(null);
+    const [filterModalVisible, setFilterModalVisible] = useState(false);
+    const [gender, setGender] = useState('all');	
 
     useEffect(() => {
-        if (users.length === 0) 
+        if (users.length === 0)
             loadData();
-        else 
+        else
             listInfo.setLoading(false);
-    }, [])
+    }, []);
 
     const loadData = async () => {
         listInfo.setLoading(true);
@@ -81,42 +84,54 @@ export default function HomePage() {
         return <LoadingMoreComponent />
     };
 
+    const filteredUsers = users.filter(user => {
+        const matchesSearchQuery = user.name.first.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            user.name.last.toLowerCase().includes(searchQuery.toLowerCase());
+
+        const matchesGender = gender === 'all' || user.gender.toLowerCase() === gender.toLowerCase();
+
+        return matchesSearchQuery && matchesGender;
+    });
+
     return (
         <SafeAreaViewHome>
             {(listInfo.loading) ? <LoadingModal visible={true} /> : (
-                <View style={{flex: 1}}>
-                    <HomeMainContainer>
-                        <TitleText type='title'>InnovateTech</TitleText>
-                        <SearchAndFilterComponent
-                            setQuery={setSearchQuery}
-                            query={searchQuery}
-                            onSubmit={() => { }}
-                            onClickFilter={() => { }}
-                        />
-                        <ContentHome>
-                            <FlatList
-                                data={users}
-                                keyExtractor={(item) => item.id.value}
-                                renderItem={({ item }) => <CardComponent
-                                    user={item}
-                                    onPress={() => setSelectedUser(item)} />}
-                                onEndReached={loadMoreData}
-                                onEndReachedThreshold={0.2}
-                                ListFooterComponent={renderFooter}
-                                ListEmptyComponent={() => <NoDataComponent onPress={loadData} />}
-                                onRefresh={loadData}
-                                refreshing={listInfo.loading}
-                            />
-                        </ContentHome>
-                    </HomeMainContainer>
-                    <UserDetailsModal
-                        onClose={() => setSelectedUser(null)}
-                        user={selectedUser}
-                        visible={selectedUser != null}
+                <HomeMainContainer>
+                    <TitleText type='title'>InnovateTech</TitleText>
+                    <SearchAndFilterComponent
+                        setQuery={setSearchQuery}
+                        query={searchQuery}
+                        onClickFilter={() => setFilterModalVisible(true)}
                     />
-                </View>
-            )
-            }
+                    <ContentHome>
+                        <FlatList
+                            data={filteredUsers}
+                            keyExtractor={(item) => item.id.value}
+                            renderItem={({ item }) => <CardComponent
+                                user={item}
+                                onPress={() => setSelectedUser(item)} />}
+                            onEndReached={loadMoreData}
+                            onEndReachedThreshold={0.2}
+                            ListFooterComponent={renderFooter}
+                            ListEmptyComponent={() => <NoDataComponent onPress={loadData} />}
+                            onRefresh={loadData}
+                            refreshing={listInfo.loading}
+                        />
+                    </ContentHome>
+                </HomeMainContainer>
+            )}
+            <UserDetailsModal
+                onClose={() => setSelectedUser(null)}
+                user={selectedUser}
+                visible={selectedUser != null}
+            />
+            <GenderFilterModal 
+                onApply={() => { }} 
+                onClose={() => setFilterModalVisible(false)} 
+                visible={filterModalVisible} 
+                gender={gender}
+                setGender={setGender}
+            />
         </SafeAreaViewHome >
     )
 }
