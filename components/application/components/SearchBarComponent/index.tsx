@@ -1,15 +1,14 @@
 import React from 'react'
 import { SearchBarContainer, SearchBarInput, SearchBarStructure } from './styles';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { ThemedText } from '@/components/ThemedText';
-import { TextInput, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { ThemedView } from '@/components/ThemedView';
 
 interface SearchBarComponentProps {
     setQuery: (query: string) => void;
     query: string;
+    testID?: string
 }
 
 export default function SearchBarComponent(props: SearchBarComponentProps) {

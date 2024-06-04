@@ -12,6 +12,7 @@ type UserDetailsModalProps = {
     visible: boolean;
     onClose: () => void;
     user: IUserInterface | null;
+    testID?: string;
 }
 
 export default function UserDetailsModal(props: UserDetailsModalProps) {
@@ -25,7 +26,7 @@ export default function UserDetailsModal(props: UserDetailsModalProps) {
     return (
         <Modal visible={props.visible} onRequestClose={props.onClose} transparent={true} animationType='slide'>
             <BlurView intensity={90} tint={colorScheme == 'light' ? 'light': 'dark'}>
-                <LeaveModalContainer sizePadding={pageHeight * 0.3} onPress={props.onClose} />
+                <LeaveModalContainer sizePadding={pageHeight * 0.3} onPress={props.onClose} testID='LeaveModalContainer'/>
             </BlurView>
             {props.user != null &&
                 <InfoContainer>
