@@ -21,7 +21,7 @@ export default function CardComponent(props: CardComponentProps) {
     const { t } = useTranslation();
 
     return (
-        <TouchableOpacity onPress={props.onPress}>
+        <TouchableOpacity onPress={props.onPress} testID='card-component'>
             <Card colorTheme={colorScheme}>
                 <Avatar.Image size={avatarSize} source={{ uri: props.user.picture.large }} />
                 <CardTextContent>

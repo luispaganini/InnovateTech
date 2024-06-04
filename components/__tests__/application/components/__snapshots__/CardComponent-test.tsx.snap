@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardComponent renders correctly 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "opacity": 1,
+    }
+  }
+  testID="card-component"
+>
+  <View
+    colorTheme="light"
+    style={
+      [
+        {
+          "backgroundColor": "#fff",
+        },
+        {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "#fff",
+          "borderBottomLeftRadius": 2,
+          "borderBottomRightRadius": 2,
+          "borderColor": "#687076",
+          "borderTopLeftRadius": 2,
+          "borderTopRightRadius": 2,
+          "borderWidth": 1,
+          "flexDirection": "row",
+          "height": 100,
+          "justifyContent": "space-between",
+          "marginBottom": 10,
+          "overflow": "hidden",
+          "paddingBottom": 10,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 10,
+          "width": "90%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "rgba(103, 80, 164, 1)",
+            "borderRadius": 75,
+            "height": 150,
+            "width": 150,
+          },
+          undefined,
+        ]
+      }
+    >
+      <Image
+        accessibilityIgnoresInvertColors={true}
+        source={
+          {
+            "uri": "https://randomuser.me/api/portraits/women/25.jpg",
+          }
+        }
+        style={
+          {
+            "borderRadius": 75,
+            "height": 150,
+            "width": 150,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        [
+          {
+            "backgroundColor": "#fff",
+          },
+          {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "flexShrink": 1,
+            "height": "100%",
+            "justifyContent": "space-between",
+            "marginLeft": 10,
+            "paddingBottom": 5,
+            "paddingLeft": 5,
+            "paddingRight": 5,
+            "paddingTop": 5,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#11181C",
+            },
+            undefined,
+            undefined,
+            {
+              "fontSize": 16,
+              "fontWeight": "600",
+              "lineHeight": 24,
+            },
+            undefined,
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        Mrs Perpétua Gomes
+      </Text>
+      <View
+        style={
+          [
+            {
+              "backgroundColor": "#fff",
+            },
+            {
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            [
+              {
+                "color": "#11181C",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              },
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+            ]
+          }
+        >
+          female
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "#11181C",
+              },
+              {
+                "fontSize": 16,
+                "lineHeight": 24,
+              },
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+            ]
+          }
+        >
+          07/05/1973
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

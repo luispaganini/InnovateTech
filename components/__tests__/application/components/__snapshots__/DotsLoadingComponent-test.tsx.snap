@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DotsLoadingComponent renders correctly 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    collapsable={false}
+    colorTheme="light"
+    style={
+      {
+        "color": "black",
+        "fontSize": 50,
+        "marginLeft": 5,
+        "opacity": 0,
+      }
+    }
+    testID="dot-1"
+  >
+    .
+  </Text>
+  <Text
+    collapsable={false}
+    colorTheme="light"
+    style={
+      {
+        "color": "black",
+        "fontSize": 50,
+        "marginLeft": 5,
+        "opacity": 0,
+      }
+    }
+    testID="dot-2"
+  >
+    .
+  </Text>
+  <Text
+    collapsable={false}
+    colorTheme="light"
+    style={
+      {
+        "color": "black",
+        "fontSize": 50,
+        "marginLeft": 5,
+        "opacity": 0,
+      }
+    }
+    testID="dot-3"
+  >
+    .
+  </Text>
+</View>
+`;

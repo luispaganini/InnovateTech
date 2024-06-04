@@ -26,9 +26,9 @@ export default function DotsLoadingComponent({colorTheme}: {colorTheme: ColorSch
   
     return (
       <LoadingContainer>
-        <Dot colorTheme={colorTheme} style={{ opacity }}>.</Dot>
-        <Dot colorTheme={colorTheme} style={{ opacity }}>.</Dot>
-        <Dot colorTheme={colorTheme} style={{ opacity }}>.</Dot>
+        <Dot colorTheme={colorTheme} style={{ opacity }} testID={'dot-1'}>.</Dot>
+        <Dot colorTheme={colorTheme} style={{ opacity }} testID={'dot-2'}>.</Dot>
+        <Dot colorTheme={colorTheme} style={{ opacity }} testID={'dot-3'}>.</Dot>
       </LoadingContainer>
     );
 }
