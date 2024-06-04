@@ -38,6 +38,7 @@ Para execução do aplicativo, é necessário o App "Expo go" em seu aparelho ou
 ## Informações adicionais
 
 Outra maneira de testar é utilizando o QrCode com o app "Expo Go" sem ter a necessidade de rodar o código em sua máquina, por este link: 
+https://expo.dev/preview/update?message=add%20readme&updateRuntimeVersion=1.0.0&createdAt=2024-06-04T14%3A18%3A24.467Z&slug=exp&projectId=b139c18f-9498-485c-8c28-d68ff8d91ce0&group=feb02c35-95fd-4566-8000-632bf889b203
 
 ## Links adicionais
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
